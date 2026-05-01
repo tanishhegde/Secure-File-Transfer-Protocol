@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Private Keys
+peer_a/keys/private_key.pem
+peer_b/keys/private_key.pem

@@ -1,0 +1,32 @@
+services:
+  host_a:
+    build: .
+    container_name: host_a
+    command: sleep infinity
+    environment:
+      - LISTEN_PORT=5001
+      - B_HOST=host_b
+      - B_PORT=5001
+    volumes:
+      - ./peer_a/keys:/app/keys
+      - ./peer_a/files:/app/files
+    networks:
+      - secure-net
+
+  host_b:
+    build: .
+    container_name: host_b
+    command: sleep infinity
+    environment:
+      - LISTEN_PORT=5001
+      - B_HOST=host_a
+      - B_PORT=5001
+    volumes:
+      - ./peer_b/keys:/app/keys
+      - ./peer_b/files:/app/files
+    networks:
+      - secure-net
+
+networks:
+  secure-net:
+    driver: bridge
